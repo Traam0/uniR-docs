@@ -25,7 +25,7 @@ Helps organize departmental resources and faculty expertise.
 
 ---
 
-## Accessing Branches
+### Accessing Branches
 
 Branches are not listed independently. Instead, use
 the [Academic Programs](/api/academics/programs#retrieve-academic-program-by-id) endpoints to retrieve branches linked
@@ -33,17 +33,17 @@ to a specific program.
 
 ---
 
-## Retrieve Branch Details by ID
+### Retrieve Branch Details by ID
 
 **GET** `/api/academics/branches/{id}`
 
-### Query Parameters
+**Query Parameters**
 
 | Name | Type         | Description                     |
 |------|--------------|---------------------------------|
 | id   | unsigned int | Unique identifier of the branch |
 
-### Example Request
+**Example Request**
 
 <Tabs>
     <TabItem label="cURL">
@@ -113,5 +113,219 @@ to a specific program.
         }
 
         ```
+    </TabItem>
+</Tabs>
+
+**Responses**
+
+<Tabs>
+    <TabItem label={"200 OK"}>
+        ```json
+        {
+            "id": 0,
+            "name": "string",
+            "description": "string",
+            "years": [
+                {
+                    "id": 0,
+                    "code": "string",
+                    "year": 0
+                }
+            ]
+        }
+        ```
+    </TabItem>
+    <TabItem label={"404 NOT_FOUND"}>
+        branch does not or no longer exists
+    </TabItem>
+    <TabItem label="401 Unauthorized">
+        - Missing or invalid API KEY.
+        - User is not authenticated.
+    </TabItem>
+</Tabs>
+
+---
+
+### Creating a Branch
+
+**POST** /api/academics/branches
+
+Create a new academic branch under a program.
+
+```json title="Request Body"
+{
+  "programId": 0,
+  "name": "string",
+  "years": 0,
+  "codePrefix": "string",
+  "codeIsNumeric": true,
+  "description": "string"
+}
+```
+
+**Example Request**
+
+<Tabs>
+    <TabItem label="cURL">
+        <Code title={"POST Request"}
+              lang={"http"}
+              code={"curl -X POST \\\n\t -H  \"x-api-key: Bearer YOUR_API_KEY\" \\\n\t -H \"Content-Type: application/json\" \\\n\t" +
+                  "-d '{\"programId\": 0, \"name\": \"string\", \"years\": 0, \"codePrefix\": \"string\", \"codeIsNumeric\": true, \"description\": \"string\"}'"
+                  +" \\\n\t https://api.unir.com/v1/api/academics/branches"}
+              frame={"terminal"}
+        />
+    </TabItem>
+    <TabItem label={"javascript"}>
+        ```js title="fetch"
+        fetch('https://api.unir.com/v1/api/academics/branches', {
+            method: 'POST',
+            headers: {
+                'x-api-key': 'Bearer YOUR_API_KEY',
+            },
+            body: JSON.stringify({
+                programId: 0,
+                name: 'string',
+                years: 0,
+                codePrefix: 'string',
+                codeIsNumeric: true,
+                description: 'string'
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(console.error);
+        ```
+    </TabItem>
+    <TabItem label={"nodejs"}>
+        ```js title="axios per request header"
+        import axios from 'axios';
+
+        axios.post('https://api.unir.com/v1/api/academics/branches/123',
+            {
+                programId: 0,
+                name: 'string',
+                years: 0,
+                codePrefix: 'string',
+                codeIsNumeric: true,
+                description: 'string'
+            },
+            {
+                headers: {
+                    'x-api-key': 'Bearer YOUR_API_KEY',
+                }
+            }
+        )
+        .then(response => console.log(response.data))
+        .catch(console.error);
+
+        ```
+
+        **or**
+
+        ```js title="axios default header"
+        import axios from 'axios';
+
+        axios.defaults.headers.common['x-api-key'] = 'Bearer YOUR_API_KEY';
+
+        axios.post('https://api.unir.com/v1/api/academics/branches', {
+            programId: 0,
+            name: 'string',
+            years: 0,
+            codePrefix: 'string',
+            codeIsNumeric: true,
+            description: 'string'
+        })
+        .then(response => console.log(response.data))
+        .catch(console.error);
+        ```
+    </TabItem>
+    <TabItem label={"csharp"}>
+        ```csharp title=".NET HttpClient"
+        using System;
+        using System.Net.Http;
+        using System.Text;
+        using System.Text.Json;
+        using System.Threading.Tasks;
+
+        public class Program
+        {
+            static async Task Main()
+            {
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("x-api-key", "Bearer YOUR_API_KEY");
+
+                // Create DTO object
+                var request = new CreateBranchRequest
+                {
+                    ProgramId = 0,
+                    Name = "string",
+                    Years = 0,
+                    CodePrefix = "string",
+                    CodeIsNumeric = true,
+                    Description = "string"
+                };
+
+                // Serialize to JSON
+                var json = JsonSerializer.Serialize(request);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // Send request
+                var response = await client.PostAsync("https://api.unir.com/v1/api/academics/branches", content);
+                response.EnsureSuccessStatusCode();
+
+                var responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseBody);
+            }
+        }
+
+        // DTO definition
+        public class CreateBranchRequest
+        {
+            public int ProgramId { get; set; }
+            public string Name { get; set; } = string.Empty;
+            public int Years { get; set; }
+            public string CodePrefix { get; set; } = string.Empty;
+            public bool CodeIsNumeric { get; set; }
+            public string Description { get; set; } = string.Empty;
+        }
+        ```
+    </TabItem>
+</Tabs>
+
+**Responses**
+<Tabs>
+    <TabItem label={"201 CREATED"}>
+        ```json title="BranchBriefDto"
+        {
+            "id": 0,
+            "name": "string",
+            "description": "string"
+        }
+        ```
+    </TabItem>
+    <TabItem label="400 BadRequest">
+        ```json
+        {
+            "message": "string",
+            "errors": {
+                "additionalProp1": [
+                    "string"
+                ],
+                "additionalProp2": [
+                    "string"
+                ],
+                "additionalProp3": [
+                    "string"
+                ]
+            }
+        }
+        ```
+    </TabItem>
+    <TabItem label={"404 NOT_FOUND"}>
+        Program doesn't or no longer exist.
+    </TabItem>
+    <TabItem label="401 Unauthorized">
+        - Missing or invalid API KEY.
+        - User is not authenticated.
     </TabItem>
 </Tabs>

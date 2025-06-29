@@ -285,7 +285,7 @@ Retrieves details for a specific academic program by ID.
             "id": 0,
             "name": "string",
             "duration": "string",
-            "branches.mdx": [
+            "branches": [
                 {
                     "id": 0,
                     "name": "string",
@@ -297,10 +297,11 @@ Retrieves details for a specific academic program by ID.
     </TabItem>
     <TabItem label="404 NOTFOUND">
         Academic program does not or no longer exists
-    </TabItem> <TabItem label="401 UnAuthorized">
+    </TabItem>
+    <TabItem label="401 UnAuthorized">
     - Missing or invalid API KEY.
     - User is not authenticated.
-</TabItem>
+    </TabItem>
     <TabItem label="403 Forbidden">
         User doesnt have permission to access this resource.
     </TabItem>
