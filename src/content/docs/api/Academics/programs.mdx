@@ -1,0 +1,307 @@
+---
+title: Academic Programs
+description: API reference for managing Academic Programs in uniR.
+---
+import {Code, Tabs, TabItem} from "@astrojs/starlight/components";
+
+Manage academic programs within your university system via the uniR API.
+
+An Academic Program represents a structured set of courses and requirements offered by the institution that leads to
+a specific qualification or credential (such as a degree, diploma, or certificate).
+
+**Base Path: [api/academics/programs](https://api.unir.com/v1/api/academics/programs)**
+
+---
+
+## List Academic Programs
+
+**GET** /api/academics/programs
+
+Returns a paginated list of academic programs.
+
+**Query Parameters**
+
+| Name | Type | Description              |
+|------|------|--------------------------|
+| page | int  | Page Number (_optional_) |
+| size | int  | Number of items per page |
+
+**Example Request**
+
+<Tabs>
+    <TabItem label="cURL">
+        <Code title={"GET Request"}
+              lang={"http"}
+              code={"curl -H  x-api-key: Bearer YOUR_API_KEY \\\n\t https://api.unir.com/v1/api/academics/programs?page=1&size=10"}
+              frame={"terminal"}/>
+    </TabItem>
+    <TabItem label="javascript">
+        ```js title="fetch"
+        fetch('https://api.unir.com/v1/api/academics/programs?page=1&size=10', {
+            headers: {
+            'x-api-key': 'Bearer YOUR_API_KEY'
+            }
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(console.error);
+        ```
+    </TabItem>
+    <TabItem label="nodejs">
+        ```js title="axios per request header"
+        import axios from 'axios';
+
+        axios.get('https://api.unir.com/v1/api/academics/programs', {
+            params: { page: 1, size: 10 },
+            headers: {
+                'x-api-key': 'Bearer YOUR_API_KEY'
+            }
+        })
+        .then(response => console.log(response.data))
+        .catch(console.error);
+        ```
+
+        **or**
+
+        ```js title="axios default header"
+        import axios from 'axios';
+
+        axios.defaults.headers.common['x-api-key'] = 'Bearer YOUR_API_KEY';
+
+        axios.get('https://api.unir.com/v1/api/academics/programs', {
+            params: { page: 1, size: 10 }
+        })
+        .then(response => console.log(response.data))
+        .catch(console.error);
+    ```
+    </TabItem>
+</Tabs>
+
+**Responses**
+
+<Tabs>
+    <TabItem label="200 OK">
+        <Code title={"AcademicProgramBriefDto"}
+              lang={"json"}
+              code={
+                  JSON.stringify({
+                      "items": [
+                          {
+                              "id": 0,
+                              "name": "string",
+                              "duration": "string"
+                          }
+                      ],
+                      "pageNumber": 0,
+                      "pageSize": 0,
+                      "totalPages": 0,
+                      "count": 0,
+                      "hasPreviousPage": true,
+                      "hasNextPage": true
+                  }, null, 2)
+              }
+        />
+    </TabItem>
+    <TabItem label="401 UnAuthorized">
+        - Missing or invalid API KEY.
+        - User is not authenticated.
+    </TabItem>
+    <TabItem label="403 Forbidden">
+        User doesnt have permission to access this resource.
+    </TabItem>
+</Tabs>
+
+---
+
+## Create Academic Programs
+
+**POST** /api/academics/programs
+
+Creates a new academic program.
+
+**Request Body**x
+```json
+{
+  "name": "string",
+  "duration": "string"
+}
+```
+**Example Request**
+
+<Code title={"POST Request"}
+      lang={"http"}
+      code={"curl -X POST \\ \n\t -H x-api-key: Bearer YOUR_API_KEY \\\n\t -H \"Content-Type: application/json\" \\\n\t -d '{\"name\":\"Computer Science\",\"code\":\"CS101\"}' \\\n\t https://api.unir.com/v1/api/academics/programs"}
+      frame={"terminal"}/>
+
+**Responses**
+
+<Tabs>
+    <TabItem label="200 OK">
+        <Code title="AcademicProgramBriefDto"
+              lang="json"
+              code={
+                  JSON.stringify({
+                      "id": 0,
+                      "name": "string",
+                      "duration": "string"
+                  }, null, 2)
+              }/>
+    </TabItem>
+    <TabItem label="400 BadRequest">
+        <Code title="BadRequestBody"
+              lang="json"
+              code={
+                  JSON.stringify({
+                      "message": "string",
+                      "errors": {
+                          "additionalProp1": [
+                              "string"
+                          ],
+                          "additionalProp2": [
+                              "string"
+                          ],
+                          "additionalProp3": [
+                              "string"
+                          ]
+                      }
+                  }, null, 2)
+              }/>
+    </TabItem>
+    <TabItem label="401 UnAuthorized">
+        - Missing or invalid API KEY.
+        - User is not authenticated.
+    </TabItem>
+    <TabItem label="403 Forbidden">
+        User doesnt have permission to access this resource.
+    </TabItem>
+</Tabs>
+
+## Retrieve Academic Program by ID
+
+**GET** /api/academics/programs/\{id\}
+
+Retrieves details for a specific academic program by ID.
+
+**Path Parameters**
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>id</td>
+        <td>unsigned int</td>
+        <td>Unique program identifier</td>
+    </tr>
+    </tbody>
+</table>
+
+**Example Request**
+
+<Tabs>
+    <TabItem label="curl">
+        <Code title={"GET Request"}
+              lang={"http"}
+              code={"curl -H  x-api-key: Bearer YOUR_API_KEY \\\n\t https://api.unir.com/v1/api/academics/programs/321"}
+              frame={"terminal"}/>
+    </TabItem>
+    <TabItem label="javascript">
+        ```js title="fetch"
+        fetch('https://api.unir.com/v1/api/academics/programs/321', {
+            headers: {
+                'x-api-key': 'Bearer YOUR_API_KEY'
+            }
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(console.error);
+        ```
+
+    </TabItem>
+    <TabItem label="nodejs">
+        ```js title="axios"
+        import axios from 'axios';
+
+        axios.get('https://api.unir.com/v1/api/academics/programs/321', {
+            headers: {
+                'x-api-key': 'Bearer YOUR_API_KEY'
+            }
+        })
+        .then(response => console.log(response.data))
+        .catch(console.error);
+        ```
+
+        **or**
+
+        ```js title="axios with default headers"
+        import axios from 'axios';
+
+        // in your main file
+        axios.defaults.headers.common['x-api-key'] = 'Bearer YOUR_API_KEY';
+
+        // then elsewhere
+        axios.get('https://api.unir.com/v1/api/academics/programs/321')
+        .then(response => console.log(response.data))
+        .catch(console.error);
+        ```
+
+    </TabItem>
+
+    <TabItem label="C#">
+        ```csharp title=".NET HttpClient"
+        using System;
+        using System.Net.Http;
+        using System.Net.Http.Headers;
+        using System.Threading.Tasks;
+
+        class Program
+        {
+            static async Task Main()
+            {
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("x-api-key", "Bearer YOUR_API_KEY");
+
+                var response = await client.GetAsync("https://api.unir.com/v1/api/academics/programs/321");
+                response.EnsureSuccessStatusCode();
+
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(content);
+            }
+        }
+        ```
+    </TabItem>
+</Tabs>
+
+**Responses**
+
+<Tabs>
+    <TabItem label="200 OK">
+        ```json title="AcademicProgramDto"
+        {
+            "id": 0,
+            "name": "string",
+            "duration": "string",
+            "branches.mdx": [
+                {
+                    "id": 0,
+                    "name": "string",
+                    "description": "string"
+                }
+            ]
+        }
+        ```
+    </TabItem>
+    <TabItem label="404 NOTFOUND">
+        Academic program does not or no longer exists
+    </TabItem> <TabItem label="401 UnAuthorized">
+    - Missing or invalid API KEY.
+    - User is not authenticated.
+</TabItem>
+    <TabItem label="403 Forbidden">
+        User doesnt have permission to access this resource.
+    </TabItem>
+</Tabs>

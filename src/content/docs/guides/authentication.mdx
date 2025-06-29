@@ -1,0 +1,50 @@
+---
+title: Authentication
+description: A guide in my new Starlight docs site.
+---
+
+##  Base URL
+All API requests are made to: https://api.unir.com/v1
+
+
+## API KEY
+
+uniR uses **Bearer token authentication**. Include your API key in the `Authorization` header:
+`Authorization: Bearer YOUR_API_KEY`
+
+import {Code} from '@astrojs/starlight/components';
+
+<Code lang={"http"} title={"cURL request"}
+      mark={10}
+      code={"curl -H \"x-api-key: Bearer YOUR_API_KEY\" \\\n\t https://api.unir.com/v1/ismagi/students"}
+/>
+
+---
+
+## Quick Test Call
+
+Test that everything works with a simple ping:
+<Code lang={"http"} title={"cURL ping request"}
+      mark={10}
+      code={"curl -H \"x-api-key: Bearer YOUR_API_KEY\" \\\n\t https://api.unir.com/v1/ping"}
+/>
+
+**Sample Response**
+
+<Code lang={"json"}
+      mark={10}
+      code={"{\"status\": \"ok\"}"}
+/>
+
+---
+
+## 6. Error Handling
+
+uniR uses standard HTTP response codes. Common errors:
+
+| Code | Meaning               | Example Message          |
+|------|-----------------------|--------------------------|
+| 401  | Unauthorized          | Invalid API KEy          |
+| 403  | Forbidden             | Insufficient Permissions |
+| 500  | Internal Server Error |                          |
+
