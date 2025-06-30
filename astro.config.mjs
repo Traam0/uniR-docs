@@ -17,8 +17,10 @@ export default defineConfig({
             sidebar: [
                 {
                     label: 'Getting Started',
-                    items: [{label: "Overview", slug: "guides/overview"}, // Each item here is one entry in the navigation menu.
-                        {label: 'Authentication', slug: 'guides/authentication'},],
+                    items: [
+                        {label: "Overview", slug: "guides/overview"}, // Each item here is one entry in the navigation menu.
+                        {label: 'Authentication.mdx', slug: 'guides/authentication'},
+                    ],
                 },
                 {
                     label: "API",
@@ -28,6 +30,15 @@ export default defineConfig({
                             items: [
                                 {label: "Academic Programs", slug: "api/academics/programs",},
                                 {label: "Branches", slug: "api/academics/branches",}
+                            ]
+                        },
+                        {
+                            label: "Authentication", slug: "api/auth/authentication",
+                        },
+                        {
+                            label: "Security",
+                            items: [
+                                {label: "Security Overview", slug: "api/security/overview"},
                             ]
                         }
                     ]

@@ -1,0 +1,95 @@
+---
+title: User Authentication
+description: Authenticate your institution's users (students, teachers, staff) via the uniR API.
+---
+import {Tabs, TabItem} from "@astrojs/starlight/components";
+
+
+Enable user authentication for your institution via the uniR API.
+
+User Authentication allows your school or organization to securely verify the identity of students, teachers, and staff who access your connected applications and services.
+
+Authentication ensures that users can safely sign in to view or manage their personalized academic information, while protecting institutional data.
+
+Typically, user authentication:
+
+- Verifies credentials (email and password) for individual users.
+- Issues secure access tokens to authorize user-specific API requests.
+- Supports login for all user roles (students, teachers, administrative staff).
+- Enables access to personalized features such as timetables, grades, and schedules.
+
+All user authentication requests must include your institution’s API key in the header to ensure they are properly scoped and authorized.
+
+**Base Path: [api/auth/](https://api.unir.com/v1/api/auth/)**
+
+---
+
+## Login
+
+**POST** `/api/auth/login`
+Authenticates a user by verifying their credentials, returning a user access token and refrsh token.
+
+**Headers**
+
+| Header       | Value               | Required |
+|--------------|---------------------|----------|
+| x-api-key    | Bearer YOUR_API_Key | ✅        |
+| Content-Type | application/json    | ❌        |
+
+---
+
+```json title="Request Body"
+{
+  "email": "student@school.edu",
+  "password": "studentPassword123"
+}
+```
+---
+
+Example Request
+
+```http request title="cURL POST REQUEST" frame="terminal" 
+curl -X POST \ 
+     -H "x-api-key: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{"email":"student@school.edu","password":"studentPassword123"}' \
+     "https://api.unir.com/v1/api/auth/login"
+```
+---
+
+**Responses**
+<Tabs>
+    <TabItem label={"200 OK"}>
+        ```json
+        {
+            "ATS" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30",
+            "RTS": "DJHz+Ja2HhGTwVChI1pSknE4BrGH2PCFG2/frXMifUc="
+        }
+        ```
+    </TabItem>
+    <TabItem label="400 BAD_REQUEST">
+        ```json
+        {
+            "message": "string",
+            "errors": {
+                "additionalProp1": [
+                "string"
+                ],
+                "additionalProp2": [
+                "string"
+                ],
+                "additionalProp3": [
+                "string"
+                ]
+            }
+        }
+        ```
+    </TabItem>
+    <TabItem label={"404 NOT_FOUND"}>
+        Account does not or no longer exists
+    </TabItem>
+    <TabItem label={"401 Unauthorized"}>
+        - Missing or invalid API KEY.
+        - Invalid User Credentials.
+    </TabItem>
+</Tabs>
