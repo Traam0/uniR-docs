@@ -4,20 +4,12 @@ import starlight from '@astrojs/starlight';
 import catppuccin from "@catppuccin/starlight";
 
 import tailwindcss from '@tailwindcss/vite';
-// import vercel from '@astrojs/';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
     integrations: [
         starlight({
-            head: [
-                {
-                    tag: 'script', attrs: {type: 'module'}, content: `
-  import { inject } from '@vercel/analytics';
-  inject();
-`
-                }
-            ],
             plugins: [catppuccin()],
             customCss: ["./src/styles/global.css"],
             title: 'UniR API',
@@ -46,6 +38,11 @@ export default defineConfig({
             ],
         }),
     ],
+    adapter: vercel({
+        webAnalytics: {
+            enabled: true,
+        },
+    }),
     vite: {
         plugins: [tailwindcss()],
     },
