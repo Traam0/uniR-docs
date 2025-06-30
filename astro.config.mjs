@@ -12,9 +12,11 @@ export default defineConfig({
         starlight({
             head: [
                 {
-                    tag: 'script',
-                    attrs: { type: 'module', src: '@vercel/analytics', async: true },
-                },
+                    tag: 'script', attrs: {type: 'module'}, content: `
+  import { inject } from '@vercel/analytics';
+  inject();
+`
+                }
             ],
             plugins: [catppuccin()],
             customCss: ["./src/styles/global.css"],
