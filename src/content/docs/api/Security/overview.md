@@ -43,9 +43,3 @@ uniR's security model is designed for multi-institution use, with two levels of 
 - **Plan Roles and Permissions Carefully**: Define roles and permissions to reflect your institution’s policies and avoid over-permissioned users.
 - **Audit Access Regularly**: Review who has which roles and permissions to maintain security and compliance.
 
----
-
-## Available Guides
-
-- [User Authentication](/api/auth/authentication/#login): Implement user login and manage access tokens.
-- [Role Presets](/api/auth/authentication/#login): Define, manage, and assign reusable permission templates.

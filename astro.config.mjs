@@ -16,11 +16,24 @@ export default defineConfig({
             social: [{icon: 'github', label: 'GitHub', href: 'https://github.com/Traam0'}],
             sidebar: [
                 {
-                    label: 'Getting Started',
+                    label: 'Start Here',
                     items: [
-                        {label: "Overview", slug: "guides/overview"}, // Each item here is one entry in the navigation menu.
-                        {label: 'Authentication.mdx', slug: 'guides/authentication'},
+                        {label: "Getting Started", slug: "getting-started"}, // Each item here is one entry in the navigation menu.
+                        {label: "API Versioning", slug: "api-versioning"}, // Each item here is one entry in the navigation menu.
+                        {label: "Tools and Environment Setup", slug: "tools-and-environment-setup"}, // Each item here is one entry in the navigation menu.
                     ],
+                },
+                {
+                    label: "Guides",
+                    items: [
+                        {label: "Security", slug: "guides/security"},
+                    ]
+                },
+                {
+                    label: "Endpoints Reference",
+                    items: [
+
+                    ]
                 },
                 {
                     label: "API",
@@ -35,12 +48,6 @@ export default defineConfig({
                         {
                             label: "Authentication", slug: "api/auth/authentication",
                         },
-                        {
-                            label: "Security",
-                            items: [
-                                {label: "Security Overview", slug: "api/security/overview"},
-                            ]
-                        }
                     ]
                 },
                 {

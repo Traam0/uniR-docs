@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ac43564-6bb5-4830-b47a-af4542d07543" name="Changes" comment="analytics4">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7ac43564-6bb5-4830-b47a-af4542d07543" name="Changes" comment="analytics44" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,6 +52,13 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\src\uniR\src\content\docs" />
+      <recent name="F:\src\uniR\src\content\docs\guides\Getting Started" />
+      <recent name="F:\src\uniR\src\content\docs\guides" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -111,7 +116,7 @@
       <workItem from="1751156976163" duration="2145000" />
       <workItem from="1751157030027" duration="11882000" />
       <workItem from="1751284737321" duration="1745000" />
-      <workItem from="1751285196796" duration="683000" />
+      <workItem from="1751285196796" duration="5832000" />
     </task>
     <task id="LOCAL-00001" summary="branches">
       <option name="closed" value="true" />
@@ -161,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751285274598</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="analytics44">
+      <option name="closed" value="true" />
+      <created>1751286445949</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1751286445949</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +186,7 @@
     <MESSAGE value="analytics2" />
     <MESSAGE value="analytics3" />
     <MESSAGE value="analytics4" />
-    <option name="LAST_COMMIT_MESSAGE" value="analytics4" />
+    <MESSAGE value="analytics44" />
+    <option name="LAST_COMMIT_MESSAGE" value="analytics44" />
   </component>
 </project>
