@@ -12,10 +12,12 @@ hero:
       icon: right-arrow
 
 ---
-import { Card, CardGrid } from '@astrojs/starlight/components';
-import Analytics from '@vercel/analytics/astro'
 
-<Analytics />
+<script type="module">
+    import { inject } from '@vercel/analytics';
+    inject();
+</script>
+
 
 [//]: # (## Next steps)
 
